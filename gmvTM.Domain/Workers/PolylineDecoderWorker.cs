@@ -6,7 +6,7 @@ using gmvTM.Domain.Workers.Interfaces;
 namespace gmvTM.Domain.Workers
 {
 
-    //claude assisted me with this code
+    // Claude assisted me with this code.
     public sealed class PolylineDecoderWorker : IPolylineDecoderWorker
     {
         private static readonly double Factor = Math.Pow(10, 5);
@@ -31,7 +31,7 @@ namespace gmvTM.Domain.Workers
             return coordinates;
         }
 
-        //copied from claude
+        // Copied from Claude.
         private static int DecodeNext(string encoded, ref int index)
         {
             int result = 0;

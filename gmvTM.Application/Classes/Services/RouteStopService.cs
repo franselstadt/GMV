@@ -71,7 +71,7 @@ namespace gmvTM.Application.Classes.Services
             return stop;
         }
 
-        //claude assisted me with this method
+        // Claude assisted me with this method.
         public async Task<NextArrivalDto?> GetNextArrivalsAsync(string routeCode, string stopCode, CancellationToken ct)
         {
             RouteItem route = await RouteCodeLookup.RequireAsync(_routes, routeCode, ct);

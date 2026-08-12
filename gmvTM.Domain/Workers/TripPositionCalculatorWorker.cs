@@ -7,7 +7,7 @@ namespace gmvTM.Domain.Workers
 {
     public sealed class TripPositionCalculatorWorker : ITripPositionCalculatorWorker
     {
-        //claude assisted me in writing the math behind this method
+        // Claude assisted me in writing the math behind this method.
         public VehicleMotionViewItem Calculate(RoutePathViewItem path, IReadOnlyList<PathStopViewItem> stopsInOrder, int startStopIndex, double speedMetersPerSecond, int averageDwellSeconds, int announceLeadSeconds, int doorClosingSeconds, TimeSpan elapsed)
         {
             ArgumentNullException.ThrowIfNull(path);

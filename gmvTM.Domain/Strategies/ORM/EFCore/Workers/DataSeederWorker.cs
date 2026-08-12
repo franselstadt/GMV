@@ -42,6 +42,24 @@ namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
             this.SeedAsync().GetAwaiter().GetResult();
         }
 
+        public void Reseed()
+        {
+            this.ReseedAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task ReseedAsync(CancellationToken cancellationToken = default)
+        {
+            this.Context.StopTrips.RemoveRange(this.Context.StopTrips);
+            this.Context.Trips.RemoveRange(this.Context.Trips);
+            this.Context.StopPlans.RemoveRange(this.Context.StopPlans);
+            this.Context.Stops.RemoveRange(this.Context.Stops);
+            this.Context.Vehicles.RemoveRange(this.Context.Vehicles);
+            this.Context.Routes.RemoveRange(this.Context.Routes);
+            await this.Context.SaveChangesAsync(cancellationToken);
+
+            await this.SeedAsync(cancellationToken);
+        }
+
         public async Task SeedAsync(CancellationToken cancellationToken = default)
         {
             try

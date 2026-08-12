@@ -7,7 +7,7 @@ namespace gmvTM.Domain.Workers
 {
     public sealed class RoutePathBuilderWorker : IRoutePathBuilderWorker
     {
-        //copied from claude helped here
+        // Copied from Claude, which helped here.
         public RoutePathViewItem Build(IReadOnlyList<CoordinatesViewItem> decodedPoints)
         {
             ArgumentNullException.ThrowIfNull(decodedPoints);

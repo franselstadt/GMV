@@ -4,10 +4,12 @@ namespace gmvTM.Domain
 {
     public readonly struct AppConstants
     {
-        public string CorsAllowedOriginsSection => "Cors:AllowedOrigins";
         public string CorsPolicyName => "Default";
         public string VehiclePositionHubPath => "/hubs/vehicle-position";
         public string VehiclePositionEvent => "positionUpdate";
+        public string VehiclePositionGroupPrefix => "vehicle-";
+
+        public string VehicleGroupName(string fleetCode) => $"{VehiclePositionGroupPrefix}{fleetCode.Trim().ToUpperInvariant()}";
         public string DefaultRouteCode => "F";
         public double DefaultAverageMph => 25;
         public double MinAverageMph => 10;

@@ -19,6 +19,15 @@ using gmvTM.Domain.Workers.Interfaces;
 
 namespace gmvTM.Application.Classes.Services
 {
+    // Claude, Google, YouTube, and many other resources assisted in my understanding of how to
+    // architect and write this code, especially from a math perspective. I remembered a lot from a
+    // previous, similar project, but in this example we simulate, which was a neat new challenge
+    // for me. I learned a lot about how to simulate a vehicle moving along a route (for display on
+    // Leaflet) and how to calculate its position and status based on time and speed. It is by no
+    // means perfect, as there are many more variables. I also learned how to handle multiple
+    // simulations and how to broadcast the vehicle position to clients. I know how to do this
+    // using Kafka/RabbitMQ or even good old Socket.IO, but I have not used SignalR in a while,
+    // other than Blazor diff streaming.
     public sealed class SimulationService : ISimulationService
     {
         private readonly ISimpleUnitOfWork _unitOfWork;
@@ -50,6 +59,14 @@ namespace gmvTM.Application.Classes.Services
 
         private IStopTripCollection StopTrips => _unitOfWork.StopTrips;
 
+
+        // Claude assisted greatly in my understanding of how to architect and write this code,
+        // especially from a math perspective. I remembered a lot from a previous, similar project,
+        // but in this example we simulate, which was a neat new challenge for me. I learned a lot
+        // about how to simulate a vehicle moving along a route and how to calculate its position
+        // and status based on time and speed. I also learned how to handle multiple simulations
+        // and how to broadcast the vehicle position to clients. This was a fun and educational
+        // project for me.
         public async Task<SimulationRunDto> StartAsync(string routeCode, StartSimulationRequest request, CancellationToken ct)
         {
             RouteItem route = await RouteCodeLookup.RequireAsync(Routes, routeCode, ct);
@@ -168,6 +185,8 @@ namespace gmvTM.Application.Classes.Services
 
         public async Task TickAsync(CancellationToken ct)
         {
+
+            //simulate vehicle movement event on ticket stream back to ws to map on leaflet map
             DateTime now = _clock.UtcNow;
 
             foreach (ActiveSimulation simulation in _store.ListActive().ToList())
