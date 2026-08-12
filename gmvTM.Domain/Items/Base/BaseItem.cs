@@ -37,7 +37,7 @@ namespace gmvTM.Domain.Items.Base
             ArgumentNullException.ThrowIfNull(collection);
 
             TItem item = this as TItem ?? throw new InvalidOperationException(
-                string.Format(Messages.ItemCannotBeCreatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+                string.Format(gmvDomain.Messages.ItemCannotBeCreatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
 
             collection.Create(item);
         }
@@ -46,7 +46,7 @@ namespace gmvTM.Domain.Items.Base
         {
             ArgumentNullException.ThrowIfNull(collection);
             TItem item = this as TItem ?? throw new InvalidOperationException(
-                string.Format(Messages.ItemCannotBeCreatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+                string.Format(gmvDomain.Messages.ItemCannotBeCreatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
 
             return collection.CreateAsync(item, cancellationToken);
         }
@@ -68,7 +68,7 @@ namespace gmvTM.Domain.Items.Base
             ArgumentNullException.ThrowIfNull(collection);
 
             TItem item = this as TItem ?? throw new InvalidOperationException(
-                string.Format(Messages.ItemCannotBeUpdatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+                string.Format(gmvDomain.Messages.ItemCannotBeUpdatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
 
             collection.Update(item);
         }
@@ -77,7 +77,7 @@ namespace gmvTM.Domain.Items.Base
         {
             ArgumentNullException.ThrowIfNull(collection);
             TItem item = this as TItem ?? throw new InvalidOperationException(
-                string.Format(Messages.ItemCannotBeUpdatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+                string.Format(gmvDomain.Messages.ItemCannotBeUpdatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
 
             return collection.UpdateAsync(item, cancellationToken);
         }

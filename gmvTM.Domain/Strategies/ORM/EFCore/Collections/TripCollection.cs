@@ -1,14 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using gmvTM.Domain.Collections.Base;
 using gmvTM.Domain.Collections.Interfaces;
-using gmvTM.Domain.Infrastructure.Persistence;
+using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Items;
 
-namespace gmvTM.Domain.Collections
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Collections
 {
     public sealed class TripCollection : BaseCollection<TripItem>, ITripCollection
     {
@@ -37,7 +36,7 @@ namespace gmvTM.Domain.Collections
         public IReadOnlyList<TripItem> ReadActiveByRouteID(int routeID)
         {
             return this.ReadByRouteID(routeID)
-                .Where(t => string.Equals(t.Status, Messages.SimulationStatusRunning, StringComparison.Ordinal))
+                .Where(t => string.Equals(t.Status, gmvDomain.Messages.SimulationStatusRunning, StringComparison.Ordinal))
                 .ToList();
         }
 
@@ -46,7 +45,7 @@ namespace gmvTM.Domain.Collections
             IReadOnlyList<TripItem> rows = await this.ReadByRouteIDAsync(routeID, cancellationToken).ConfigureAwait(false);
 
             return rows
-                .Where(t => string.Equals(t.Status, Messages.SimulationStatusRunning, StringComparison.Ordinal))
+                .Where(t => string.Equals(t.Status, gmvDomain.Messages.SimulationStatusRunning, StringComparison.Ordinal))
                 .ToList();
         }
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using gmvTM.Domain.Items.View;
 using gmvTM.Domain.Workers.Interfaces;
@@ -39,7 +39,7 @@ namespace gmvTM.Domain.Workers
             do
             {
                 if (index >= encoded.Length)
-                    throw new FormatException(Messages.InvalidEncodedPolyline);
+                    throw new FormatException(gmvDomain.Messages.InvalidEncodedPolyline);
 
                 b = encoded[index++] - 63;
                 result |= (b & 0x1F) << shift;

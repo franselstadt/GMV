@@ -14,7 +14,7 @@ namespace gmvTM.Domain.Items
 
         public override string TableName
         {
-            get { return global::gmvTM.Domain.Tables.Stops; }
+            get { return gmvDomain.Tables.Stops; }
         }
 
         [TableDefinition(ForeignKeyOf = typeof(RouteItem), OnDelete = TableDeleteBehavior.Cascade, UniqueGroup = "RouteStopCode")]

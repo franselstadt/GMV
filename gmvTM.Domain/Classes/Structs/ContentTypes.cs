@@ -1,6 +1,6 @@
-namespace gmvTM.Domain
+﻿namespace gmvTM.Domain
 {
-    public static class ContentTypes
+    public readonly struct ContentTypes
     {
         public const string ApplicationJson = "application/json";
     }

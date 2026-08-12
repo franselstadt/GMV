@@ -7,13 +7,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using gmvTM.Domain.Infrastructure.Persistence;
+using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Items;
 using gmvTM.Domain.Items.View;
-using gmvTM.Domain.Workers.Base;
 using gmvTM.Domain.Workers.Interfaces;
 
-namespace gmvTM.Domain.Workers
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
 {
     public sealed class DataSeederWorker : BaseWorker, IDataSeederWorker
     {
@@ -48,35 +47,35 @@ namespace gmvTM.Domain.Workers
             try
             {
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT 1 FROM {Tables.Routes} LIMIT 1",
+                    $"SELECT 1 FROM {gmvDomain.Tables.Routes} LIMIT 1",
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT {Columns.StopCode} FROM {Tables.Stops} LIMIT 1",
+                    $"SELECT {gmvDomain.Columns.StopCode} FROM {gmvDomain.Tables.Stops} LIMIT 1",
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT SpecialAlert FROM {Tables.Stops} LIMIT 1",
+                    $"SELECT SpecialAlert FROM {gmvDomain.Tables.Stops} LIMIT 1",
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT 1 FROM {Tables.StopPlans} LIMIT 1",
+                    $"SELECT 1 FROM {gmvDomain.Tables.StopPlans} LIMIT 1",
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT 1 FROM {Tables.StopTrips} LIMIT 1",
+                    $"SELECT 1 FROM {gmvDomain.Tables.StopTrips} LIMIT 1",
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT 1 FROM {Tables.Vehicles} LIMIT 1",
+                    $"SELECT 1 FROM {gmvDomain.Tables.Vehicles} LIMIT 1",
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
-                    $"SELECT StartStopID FROM {Tables.Trips} LIMIT 1",
+                    $"SELECT StartStopID FROM {gmvDomain.Tables.Trips} LIMIT 1",
                     cancellationToken);
 
                 int legacyColumnCount = await this.Context.Database
-                    .SqlQueryRaw<int>($"SELECT COUNT(*) AS \"Value\" FROM pragma_table_info('{Tables.Trips}') WHERE name = 'ScheduleRunIndex'")
+                    .SqlQueryRaw<int>($"SELECT COUNT(*) AS \"Value\" FROM pragma_table_info('{gmvDomain.Tables.Trips}') WHERE name = 'ScheduleRunIndex'")
                     .SingleAsync(cancellationToken);
 
                 if (legacyColumnCount > 0)
@@ -91,7 +90,7 @@ namespace gmvTM.Domain.Workers
 
             if (await this.Context.Routes.AnyAsync(cancellationToken))
             {
-                this.logger.LogInformation(Messages.LogDatabaseAlreadySeeded);
+                this.logger.LogInformation(gmvDomain.Messages.LogDatabaseAlreadySeeded);
                 return;
             }
 
@@ -100,7 +99,7 @@ namespace gmvTM.Domain.Workers
 
 
             RouteSeedDocument seed = await JsonSerializer.DeserializeAsync<RouteSeedDocument>(stream,JsonOptions,cancellationToken)
-                ?? throw new InvalidOperationException(string.Format(Messages.SeedFileDeserializeFailed, seedPath));
+                ?? throw new InvalidOperationException(string.Format(gmvDomain.Messages.SeedFileDeserializeFailed, seedPath));
 
             RouteItem route = new RouteItem
             {
@@ -115,12 +114,12 @@ namespace gmvTM.Domain.Workers
 
             VehicleItem vehicle = new VehicleItem
             {
-                FleetCode = Resources.SampleFleetCode,
-                Make = Resources.SampleVehicleMake,
-                Model = Resources.SampleVehicleModel,
-                LicensePlate = Resources.SampleLicensePlate,
-                Capacity = Resources.SampleVehicleCapacity,
-                ModelYear = Resources.SampleVehicleModelYear,
+                FleetCode = gmvDomain.Resources.SampleFleetCode,
+                Make = gmvDomain.Resources.SampleVehicleMake,
+                Model = gmvDomain.Resources.SampleVehicleModel,
+                LicensePlate = gmvDomain.Resources.SampleLicensePlate,
+                Capacity = gmvDomain.Resources.SampleVehicleCapacity,
+                ModelYear = gmvDomain.Resources.SampleVehicleModelYear,
                 WheelchairAccessible = true
             };
 
@@ -167,10 +166,10 @@ namespace gmvTM.Domain.Workers
                     continue;
 
                 if (!stopsByCode.TryGetValue(row.StopCode, out StopItem? catalogStop))
-                    throw new InvalidOperationException(string.Format(Messages.SeedUnknownStopCode, row.StopCode));
+                    throw new InvalidOperationException(string.Format(gmvDomain.Messages.SeedUnknownStopCode, row.StopCode));
 
                 if (!arrivalSecondsBySequence.TryGetValue(row.Sequence, out int arrivalSeconds))
-                    throw new InvalidOperationException(string.Format(Messages.NoBaselineArrivalSeconds, row.Sequence));
+                    throw new InvalidOperationException(string.Format(gmvDomain.Messages.NoBaselineArrivalSeconds, row.Sequence));
 
                 await this.Context.StopPlans.AddAsync(
                     new StopPlanItem
@@ -187,19 +186,19 @@ namespace gmvTM.Domain.Workers
             await this.Context.SaveChangesAsync(cancellationToken);
 
             this.logger.LogInformation(
-                Messages.LogSeededRoute,
+                gmvDomain.Messages.LogSeededRoute,
                 route.ShortName,
                 vehicle.FleetCode,
                 seed.Stops.Count,
                 planCount,
-                AppConstants.DefaultAverageMph,
-                AppConstants.DefaultAverageDwellSeconds);
+                gmvDomain.AppConstants.DefaultAverageMph,
+                gmvDomain.AppConstants.DefaultAverageDwellSeconds);
         }
 
         private Dictionary<int, int> BuildArrivalSecondsBySequence(string encodedPolyline, IReadOnlyList<StopItem> stopsInOrder)
         {
             if (stopsInOrder.Count < 2)
-                throw new InvalidOperationException(Messages.RouteNeedsTwoStopsForArrivalSeconds);
+                throw new InvalidOperationException(gmvDomain.Messages.RouteNeedsTwoStopsForArrivalSeconds);
 
             RoutePathViewItem path = this.pathBuilder.Build(this.polylineDecoder.Decode(encodedPolyline));
             double[] alongPath = new double[stopsInOrder.Count];
@@ -231,10 +230,10 @@ namespace gmvTM.Domain.Workers
                 else
                     meters = Math.Max(0, alongPath[i] - alongPath[previous]);
 
-                bySequence[stopsInOrder[i].Sequence] = AppConstants.ArrivalSecondsFromPrevious(
+                bySequence[stopsInOrder[i].Sequence] = gmvDomain.AppConstants.ArrivalSecondsFromPrevious(
                     meters,
-                    AppConstants.DefaultAverageMph,
-                    AppConstants.DefaultAverageDwellSeconds);
+                    gmvDomain.AppConstants.DefaultAverageMph,
+                    gmvDomain.AppConstants.DefaultAverageDwellSeconds);
             }
 
             return bySequence;
@@ -245,10 +244,10 @@ namespace gmvTM.Domain.Workers
         {
             string[] candidates =
             [
-                Path.Combine(AppContext.BaseDirectory, Resources.SeedOutputFolder, Resources.SeedFileName),
-                Path.Combine(AppContext.BaseDirectory, Resources.SeedFileName),
-                Path.Combine(Directory.GetCurrentDirectory(), Resources.SeedOutputFolder, Resources.SeedFileName),
-                Path.Combine(Directory.GetCurrentDirectory(), "gmvTM.Domain","Infrastructure",Resources.SeedOutputFolder, Resources.SeedFileName)
+                Path.Combine(AppContext.BaseDirectory, gmvDomain.Resources.SeedOutputFolder, gmvDomain.Resources.SeedFileName),
+                Path.Combine(AppContext.BaseDirectory, gmvDomain.Resources.SeedFileName),
+                Path.Combine(Directory.GetCurrentDirectory(), gmvDomain.Resources.SeedOutputFolder, gmvDomain.Resources.SeedFileName),
+                Path.Combine(Directory.GetCurrentDirectory(), "gmvTM.Domain","Infrastructure",gmvDomain.Resources.SeedOutputFolder, gmvDomain.Resources.SeedFileName)
             ];
 
             foreach (string path in candidates)
@@ -258,7 +257,7 @@ namespace gmvTM.Domain.Workers
             }
 
             throw new FileNotFoundException(
-                string.Format(Messages.SeedFileNotFound, Resources.SeedFileName, Resources.SeedOutputFolder));
+                string.Format(gmvDomain.Messages.SeedFileNotFound, gmvDomain.Resources.SeedFileName, gmvDomain.Resources.SeedOutputFolder));
         }
 
         #region objects for deserializing the seed file

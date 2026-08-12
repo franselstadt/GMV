@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using gmvTM.Domain.Items.View;
 using gmvTM.Domain.Workers.Interfaces;
@@ -7,6 +7,7 @@ namespace gmvTM.Domain.Workers
 {
     public sealed class TripPositionCalculatorWorker : ITripPositionCalculatorWorker
     {
+        //claude assisted me in writing the math behind this method
         public VehicleMotionViewItem Calculate(RoutePathViewItem path, IReadOnlyList<PathStopViewItem> stopsInOrder, int startStopIndex, double speedMetersPerSecond, int averageDwellSeconds, int announceLeadSeconds, int doorClosingSeconds, TimeSpan elapsed)
         {
             ArgumentNullException.ThrowIfNull(path);
@@ -34,8 +35,8 @@ namespace gmvTM.Domain.Workers
                     CoordinatesViewItem position = path.PointAtDistance(from.DistanceAlongPathMeters + traveled);
                     double secondsToStop = travelSeconds - remaining;
                     string phase = secondsToStop <= announceLeadSeconds
-                        ? VehiclePhases.Approaching
-                        : VehiclePhases.Traveling;
+                        ? gmvDomain.VehiclePhases.Approaching
+                        : gmvDomain.VehiclePhases.Traveling;
 
                     return new VehicleMotionViewItem(
                         position,
@@ -52,7 +53,7 @@ namespace gmvTM.Domain.Workers
                 {
                     return new VehicleMotionViewItem(
                         path.PointAtDistance(to.DistanceAlongPathMeters),
-                        VehiclePhases.DoorsOpen,
+                        gmvDomain.VehiclePhases.DoorsOpen,
                         to.StopCode,
                         to.Name,
                         0);
@@ -64,7 +65,7 @@ namespace gmvTM.Domain.Workers
                 {
                     return new VehicleMotionViewItem(
                         path.PointAtDistance(to.DistanceAlongPathMeters),
-                        VehiclePhases.DoorsClosing,
+                        gmvDomain.VehiclePhases.DoorsClosing,
                         to.StopCode,
                         to.Name,
                         0);
@@ -75,7 +76,7 @@ namespace gmvTM.Domain.Workers
 
             return new VehicleMotionViewItem(
                 path.PointAtDistance(last.DistanceAlongPathMeters),
-                VehiclePhases.Completed,
+                gmvDomain.VehiclePhases.Completed,
                 last.StopCode,
                 last.Name,
                 0);
@@ -121,7 +122,7 @@ namespace gmvTM.Domain.Workers
         private static void ValidateTripInputs(IReadOnlyList<PathStopViewItem> stopsInOrder, int startStopIndex, double speedMetersPerSecond, int averageDwellSeconds, int doorClosingSeconds)
         {
             if (stopsInOrder.Count < 2)
-                throw new ArgumentException(Messages.TripNeedsTwoStops, nameof(stopsInOrder));
+                throw new ArgumentException(gmvDomain.Messages.TripNeedsTwoStops, nameof(stopsInOrder));
 
             if (startStopIndex < 0 || startStopIndex >= stopsInOrder.Count - 1)
                 throw new ArgumentOutOfRangeException(nameof(startStopIndex));

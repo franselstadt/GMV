@@ -11,7 +11,7 @@ namespace gmvTM.Domain.Items
 
         public override string TableName
         {
-            get { return global::gmvTM.Domain.Tables.Routes; }
+            get { return gmvDomain.Tables.Routes; }
         }
 
         [TableDefinition(MaxLength = 32, IsRequired = true)]

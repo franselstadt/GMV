@@ -1,16 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using gmvTM.Domain.Infrastructure.Persistence;
+using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Items;
 using gmvTM.Domain.Items.View;
-using gmvTM.Domain.Workers.Base;
 using gmvTM.Domain.Workers.Interfaces;
 
-namespace gmvTM.Domain.Workers
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
 {
     public sealed class TripPathCalculatorWorker : BaseWorker, ITripPathCalculatorWorker
     {
@@ -39,7 +38,7 @@ namespace gmvTM.Domain.Workers
                 .ConfigureAwait(false);
 
             if (route is null)
-                throw new InvalidOperationException(string.Format(Messages.RouteNotFound, routeID));
+                throw new InvalidOperationException(string.Format(gmvDomain.Messages.RouteNotFound, routeID));
 
             List<StopPlanItem> schedule = await (
                     from plan in this.Context.StopPlans.AsNoTracking()
@@ -51,7 +50,7 @@ namespace gmvTM.Domain.Workers
                 .ConfigureAwait(false);
 
             if (schedule.Count < 2)
-                throw new InvalidOperationException(string.Format(Messages.ScheduleNeedsTwoStops, routeID));
+                throw new InvalidOperationException(string.Format(gmvDomain.Messages.ScheduleNeedsTwoStops, routeID));
 
             HashSet<int> stopIDs = schedule.Select(s => s.StopID).ToHashSet();
             Dictionary<int, StopItem> stopsByID = await this.Context.Stops

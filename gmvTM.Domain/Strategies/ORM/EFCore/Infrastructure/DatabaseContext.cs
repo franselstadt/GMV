@@ -1,10 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using gmvTM.Domain.Infrastructure;
 using gmvTM.Domain.Items;
-using gmvTM.Domain.Workers;
+using gmvTM.Domain.Strategies.ORM.EFCore.Workers;
 
-namespace gmvTM.Domain.Infrastructure.Persistence
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure
 {
     public sealed class DatabaseContext : DbContext, IDatabaseContext
     {

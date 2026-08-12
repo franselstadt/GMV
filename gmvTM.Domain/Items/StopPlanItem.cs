@@ -10,7 +10,7 @@ namespace gmvTM.Domain.Items
 
         public override string TableName
         {
-            get { return global::gmvTM.Domain.Tables.StopPlans; }
+            get { return gmvDomain.Tables.StopPlans; }
         }
 
         [TableDefinition(ForeignKeyOf = typeof(StopItem), OnDelete = TableDeleteBehavior.Cascade, IsUnique = true)]

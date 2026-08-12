@@ -1,14 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using gmvTM.Domain.Collections.Base;
 using gmvTM.Domain.Collections.Interfaces;
-using gmvTM.Domain.Infrastructure.Persistence;
+using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Items;
 
-namespace gmvTM.Domain.Collections
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Collections
 {
     public sealed class VehicleCollection : BaseCollection<VehicleItem>, IVehicleCollection
     {

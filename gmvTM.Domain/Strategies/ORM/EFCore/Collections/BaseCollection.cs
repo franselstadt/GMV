@@ -1,14 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using gmvTM.Domain.Collections.Interfaces;
-using gmvTM.Domain.Infrastructure.Persistence;
+using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Items.Interfaces;
 
-namespace gmvTM.Domain.Collections.Base
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Collections
 {
     public abstract class BaseCollection<TItem> : IBaseCollection<TItem> where TItem : class, IItem
     {

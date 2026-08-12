@@ -20,7 +20,7 @@ namespace gmvTM.Domain.Items
 
         public override string TableName
         {
-            get { return global::gmvTM.Domain.Tables.StopTrips; }
+            get { return gmvDomain.Tables.StopTrips; }
         }
 
         [TableDefinition(ForeignKeyOf = typeof(TripItem), OnDelete = TableDeleteBehavior.Cascade, UniqueGroup = "TripSequence")]

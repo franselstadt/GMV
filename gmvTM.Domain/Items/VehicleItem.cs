@@ -16,7 +16,7 @@ namespace gmvTM.Domain.Items
 
         public override string TableName
         {
-            get { return global::gmvTM.Domain.Tables.Vehicles; }
+            get { return gmvDomain.Tables.Vehicles; }
         }
 
         [TableDefinition(MaxLength = 64, IsRequired = true, IsUnique = true)]

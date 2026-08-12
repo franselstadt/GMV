@@ -2,14 +2,6 @@ using System;
 
 namespace gmvTM.Domain
 {
-    public enum TableDeleteBehavior
-    {
-        Cascade,
-        Restrict,
-        SetNull,
-        NoAction
-    }
-
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public sealed class TableDefinitionAttribute : Attribute
     {

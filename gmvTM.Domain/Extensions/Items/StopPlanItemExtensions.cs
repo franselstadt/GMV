@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using gmvTM.Domain.Items;
@@ -21,7 +21,7 @@ namespace gmvTM.Domain.Extensions.Items
                 return 0;
 
             if (toIndex < fromIndex)
-                throw new ArgumentException(Messages.PathIndicesOutOfOrder);
+                throw new ArgumentException(gmvDomain.Messages.PathIndicesOutOfOrder);
 
             int total = 0;
             foreach (PathStopViewItem stop in stopsInOrder.Skip(fromIndex + 1).Take(toIndex - fromIndex))

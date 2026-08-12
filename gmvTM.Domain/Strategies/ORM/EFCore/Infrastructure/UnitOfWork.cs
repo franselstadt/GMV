@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using gmvTM.Domain.Collections.Interfaces;
-using gmvTM.Domain.Infrastructure.Persistence;
+using gmvTM.Domain.Infrastructure;
 
-namespace gmvTM.Domain.Infrastructure
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure
 {
     public sealed class UnitOfWork : IUnitOfWork
     {

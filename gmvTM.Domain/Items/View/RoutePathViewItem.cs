@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -15,10 +15,10 @@ namespace gmvTM.Domain.Items.View
             ArgumentNullException.ThrowIfNull(cumulativeMeters);
 
             if (points.Count < 2)
-                throw new ArgumentException(Messages.RoutePathNeedsTwoPoints, nameof(points));
+                throw new ArgumentException(gmvDomain.Messages.RoutePathNeedsTwoPoints, nameof(points));
 
             if (points.Count != cumulativeMeters.Count)
-                throw new ArgumentException(Messages.CumulativeDistancesMustMatchPoints);
+                throw new ArgumentException(gmvDomain.Messages.CumulativeDistancesMustMatchPoints);
 
             this.points = points;
             this.cumulativeMeters = cumulativeMeters;

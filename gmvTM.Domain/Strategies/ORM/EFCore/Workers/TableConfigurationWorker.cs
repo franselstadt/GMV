@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using gmvTM.Domain.Items.Base;
 using gmvTM.Domain.Workers.Interfaces;
 
-namespace gmvTM.Domain.Workers
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
 {
     public sealed class TableConfigurationWorker : ITableConfigurationWorker
     {
@@ -104,7 +104,7 @@ namespace gmvTM.Domain.Workers
                     continue;
 
                 if (!itemTypes.Contains(principalType))
-                    throw new InvalidOperationException(string.Format(Messages.ForeignKeyPrincipalNotPersistable, itemType.Name, property.Name, principalType.Name));
+                    throw new InvalidOperationException(string.Format(gmvDomain.Messages.ForeignKeyPrincipalNotPersistable, itemType.Name, property.Name, principalType.Name));
 
                 DeleteBehavior deleteBehavior = ToDeleteBehavior(definition.OnDelete);
                 PropertyInfo? navigation = CollectionNavigationFor(principalType, itemType);

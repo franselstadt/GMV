@@ -1,8 +1,8 @@
-using System;
-using gmvTM.Domain.Infrastructure.Persistence;
+﻿using System;
+using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Workers.Interfaces;
 
-namespace gmvTM.Domain.Workers.Base
+namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
 {
     public abstract class BaseWorker : IWorker
     {

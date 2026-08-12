@@ -8,16 +8,14 @@ namespace gmvTM.Domain
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddDomain(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddDomain(this IServiceCollection services, IConfiguration config, ORMType ormType = ORMType.EFCore)
         {
-            services.AddInfrastructure(config);
+            services.AddInfrastructure(config, ormType);
 
             services.AddSingleton<IDateTimeProviderWorker, SystemDateTimeProviderWorker>();
             services.AddSingleton<IPolylineDecoderWorker, PolylineDecoderWorker>();
             services.AddSingleton<IRoutePathBuilderWorker, RoutePathBuilderWorker>();
             services.AddSingleton<ITripPositionCalculatorWorker, TripPositionCalculatorWorker>();
-
-            services.AddScoped<ITripPathCalculatorWorker, TripPathCalculatorWorker>();
 
             return services;
         }

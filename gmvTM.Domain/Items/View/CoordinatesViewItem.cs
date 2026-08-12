@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using gmvTM.Domain.Items.Base;
 
 namespace gmvTM.Domain.Items.View
@@ -12,12 +12,12 @@ namespace gmvTM.Domain.Items.View
         {
             if (latitude < -90 || latitude > 90)
             {
-                throw new ArgumentOutOfRangeException(nameof(latitude), latitude, Messages.LatitudeOutOfRange);
+                throw new ArgumentOutOfRangeException(nameof(latitude), latitude, gmvDomain.Messages.LatitudeOutOfRange);
             }
 
             if (longitude < -180 || longitude > 180)
             {
-                throw new ArgumentOutOfRangeException(nameof(longitude), longitude, Messages.LongitudeOutOfRange);
+                throw new ArgumentOutOfRangeException(nameof(longitude), longitude, gmvDomain.Messages.LongitudeOutOfRange);
             }
 
             this.latitude = latitude;

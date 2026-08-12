@@ -17,7 +17,7 @@ namespace gmvTM.Domain.Items
 
         public override string TableName
         {
-            get { return global::gmvTM.Domain.Tables.Trips; }
+            get { return gmvDomain.Tables.Trips; }
         }
 
         [TableDefinition(ForeignKeyOf = typeof(RouteItem), OnDelete = TableDeleteBehavior.Cascade)]
