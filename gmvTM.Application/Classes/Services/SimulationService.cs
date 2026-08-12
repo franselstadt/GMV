@@ -9,6 +9,7 @@ using gmvTM.Application.Classes.Tools;
 using gmvTM.Application.Extensions;
 using gmvTM.Application.Interfaces;
 using gmvTM.Domain;
+using gmvTM.Domain.Classes.Tools;
 using gmvTM.Domain.Collections.Interfaces;
 using gmvTM.Domain.Extensions.Collections;
 using gmvTM.Domain.Extensions.Items;
@@ -148,7 +149,7 @@ namespace gmvTM.Application.Classes.Services
                 averageDwellSeconds: dwell,
                 startedAtUtc: now,
                 startStopIndex: startIndex,
-                speedMetersPerSecond: gmvDomain.AppConstants.MetersPerSecondFromMph(mph),
+                speedMetersPerSecond: TravelTools.MetersPerSecondFromMph(mph),
                 path: tripPath.Path,
                 stops: ordered,
                 stopTrips: trip.StopTrips.ToList());

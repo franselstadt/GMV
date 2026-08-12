@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using gmvTM.Domain.Classes.Tools;
 using gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure;
 using gmvTM.Domain.Items;
 using gmvTM.Domain.Items.View;
@@ -233,7 +234,7 @@ namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
                 else
                     meters = Math.Max(0, alongPath[i] - alongPath[previous]);
 
-                bySequence[stopsInOrder[i].Sequence] = gmvDomain.AppConstants.ArrivalSecondsFromPrevious(
+                bySequence[stopsInOrder[i].Sequence] = TravelTools.ArrivalSecondsFromPrevious(
                     meters,
                     gmvDomain.AppConstants.DefaultAverageMph,
                     gmvDomain.AppConstants.DefaultAverageDwellSeconds);
