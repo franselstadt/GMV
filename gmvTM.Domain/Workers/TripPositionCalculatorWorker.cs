@@ -88,16 +88,14 @@ namespace gmvTM.Domain.Workers
             ValidateTripInputs(stopsInOrder, startStopIndex, speedMetersPerSecond, averageDwellSeconds, doorClosingSeconds);
 
             string target = targetStopCode.Trim();
-            if (string.Equals(stopsInOrder[startStopIndex].StopCode, target, StringComparison.OrdinalIgnoreCase))
-                return 0;
-
             double tripTime = 0;
             double elapsedSeconds = Math.Max(0, elapsed.TotalSeconds);
+            int index = startStopIndex;
 
-            for (int i = startStopIndex; i < stopsInOrder.Count - 1; i++)
+            for (int step = 0; step < 2 * (stopsInOrder.Count - 1); step++)
             {
-                PathStopViewItem from = stopsInOrder[i];
-                PathStopViewItem to = stopsInOrder[i + 1];
+                PathStopViewItem from = stopsInOrder[index];
+                PathStopViewItem to = stopsInOrder[index + 1];
 
                 double legMeters = Math.Max(0, to.DistanceAlongPathMeters - from.DistanceAlongPathMeters);
                 double travelSeconds = speedMetersPerSecond <= 0 ? 0 : legMeters / speedMetersPerSecond;
@@ -106,10 +104,15 @@ namespace gmvTM.Domain.Workers
                 if (string.Equals(to.StopCode, target, StringComparison.OrdinalIgnoreCase))
                 {
                     double remaining = arrivalAtTo - elapsedSeconds;
-                    return remaining < 0 ? 0 : remaining;
+                    if (remaining >= -averageDwellSeconds)
+                        return Math.Max(0, remaining);
                 }
 
                 tripTime = arrivalAtTo + averageDwellSeconds;
+
+                index++;
+                if (index == stopsInOrder.Count - 1)
+                    index = 0;
             }
 
             return null;
@@ -118,7 +121,7 @@ namespace gmvTM.Domain.Workers
         private static void ValidateTripInputs(IReadOnlyList<PathStopViewItem> stopsInOrder, int startStopIndex, double speedMetersPerSecond, int averageDwellSeconds, int doorClosingSeconds)
         {
             if (stopsInOrder.Count < 2)
-                throw new ArgumentException("A trip needs at least two stops.", nameof(stopsInOrder));
+                throw new ArgumentException(Messages.TripNeedsTwoStops, nameof(stopsInOrder));
 
             if (startStopIndex < 0 || startStopIndex >= stopsInOrder.Count - 1)
                 throw new ArgumentOutOfRangeException(nameof(startStopIndex));

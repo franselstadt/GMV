@@ -14,20 +14,5 @@ namespace gmvTM.Domain.Extensions.Items
 
             return string.Equals(stop.StopCode.Trim(), stopCode.Trim(), StringComparison.OrdinalIgnoreCase);
         }
-
-        public static StopDto ToDto(this StopItem stop)
-        {
-            ArgumentNullException.ThrowIfNull(stop);
-
-            return new StopDto
-            {
-                ID = stop.ID,
-                StopCode = stop.StopCode,
-                Name = stop.Name,
-                Latitude = stop.Latitude,
-                Longitude = stop.Longitude,
-                Sequence = stop.Sequence
-            };
-        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using gmvTM.Domain.Collections.Interfaces;
@@ -17,12 +18,14 @@ namespace gmvTM.Domain.Items.Base
         }
 
         [View]
+        [JsonIgnore]
         public abstract string TableName
         {
             get;
         }
 
         [View]
+        [JsonIgnore]
         public bool IsNew
         {
             get { return this.ID == 0; }
@@ -33,8 +36,9 @@ namespace gmvTM.Domain.Items.Base
         {
             ArgumentNullException.ThrowIfNull(collection);
 
-            TItem item = this as TItem ?? throw new InvalidOperationException( $"Item type '{this.GetType().Name}' cannot be created through '{typeof(TItem).Name}' collection.");
-            
+            TItem item = this as TItem ?? throw new InvalidOperationException(
+                string.Format(Messages.ItemCannotBeCreatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+
             collection.Create(item);
         }
 
@@ -42,8 +46,8 @@ namespace gmvTM.Domain.Items.Base
         {
             ArgumentNullException.ThrowIfNull(collection);
             TItem item = this as TItem ?? throw new InvalidOperationException(
-                    $"Item type '{this.GetType().Name}' cannot be created through '{typeof(TItem).Name}' collection.");
-            
+                string.Format(Messages.ItemCannotBeCreatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+
             return collection.CreateAsync(item, cancellationToken);
         }
 
@@ -63,20 +67,18 @@ namespace gmvTM.Domain.Items.Base
         {
             ArgumentNullException.ThrowIfNull(collection);
 
-            TItem item = this as TItem
-                ?? throw new InvalidOperationException(
-                    $"Item type '{this.GetType().Name}' cannot be " +
-                    $"updated through '{typeof(TItem).Name}' collection.");
-           
+            TItem item = this as TItem ?? throw new InvalidOperationException(
+                string.Format(Messages.ItemCannotBeUpdatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+
             collection.Update(item);
         }
 
         public virtual Task UpdateAsync<TItem>(IBaseCollection<TItem> collection, CancellationToken cancellationToken = default)  where TItem : class, IItem
         {
             ArgumentNullException.ThrowIfNull(collection);
-            TItem item = this as TItem
-                ?? throw new InvalidOperationException(
-                    $"Item type '{this.GetType().Name}' cannot be updated through '{typeof(TItem).Name}' collection.");
+            TItem item = this as TItem ?? throw new InvalidOperationException(
+                string.Format(Messages.ItemCannotBeUpdatedThroughCollection, this.GetType().Name, typeof(TItem).Name));
+
             return collection.UpdateAsync(item, cancellationToken);
         }
 

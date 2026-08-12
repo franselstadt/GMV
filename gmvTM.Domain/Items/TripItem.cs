@@ -9,7 +9,6 @@ namespace gmvTM.Domain.Items
         private int routeID;
         private int vehicleID;
         private int startStopID;
-        private int scheduleRunIndex;
         private string status = null!;
         private DateTime startedAtUtc;
         private double averageMph;
@@ -21,30 +20,28 @@ namespace gmvTM.Domain.Items
             get { return global::gmvTM.Domain.Tables.Trips; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(RouteItem), OnDelete = TableDeleteBehavior.Cascade)]
         public int RouteID
         {
             get { return this.routeID; }
             set { this.routeID = value; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(VehicleItem), OnDelete = TableDeleteBehavior.Restrict)]
         public int VehicleID
         {
             get { return this.vehicleID; }
             set { this.vehicleID = value; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(StopItem), OnDelete = TableDeleteBehavior.Restrict)]
         public int StartStopID
         {
             get { return this.startStopID; }
             set { this.startStopID = value; }
         }
 
-        public int ScheduleRunIndex
-        {
-            get { return this.scheduleRunIndex; }
-            set { this.scheduleRunIndex = value; }
-        }
-
+        [TableDefinition(MaxLength = 64, IsRequired = true)]
         public string Status
         {
             get { return this.status; }
@@ -69,6 +66,7 @@ namespace gmvTM.Domain.Items
             set { this.averageDwellSeconds = value; }
         }
 
+        [TableDefinition(AutoInclude = true)]
         public List<StopTripItem> StopTrips
         {
             get { return this.stopTrips; }

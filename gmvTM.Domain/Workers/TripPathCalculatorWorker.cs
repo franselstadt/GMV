@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using gmvTM.Domain.Extensions.Items;
 using gmvTM.Domain.Infrastructure.Persistence;
 using gmvTM.Domain.Items;
 using gmvTM.Domain.Items.View;
@@ -18,7 +17,6 @@ namespace gmvTM.Domain.Workers
         private readonly IPolylineDecoderWorker polylineDecoder;
         private readonly IRoutePathBuilderWorker pathBuilder;
 
-        //revisit
         public TripPathCalculatorWorker(DatabaseContext context, IPolylineDecoderWorker polylineDecoder, IRoutePathBuilderWorker pathBuilder): base(context)
         {
             this.polylineDecoder = polylineDecoder
@@ -28,12 +26,12 @@ namespace gmvTM.Domain.Workers
                 ?? throw new ArgumentNullException(nameof(pathBuilder));
         }
 
-        public TripPathViewItem Calculate(int routeID, int runIndex)
+        public TripPathViewItem Calculate(int routeID)
         {
-            return this.CalculateAsync(routeID, runIndex).GetAwaiter().GetResult();
+            return this.CalculateAsync(routeID).GetAwaiter().GetResult();
         }
 
-        public async Task<TripPathViewItem> CalculateAsync(int routeID, int runIndex, CancellationToken cancellationToken = default)
+        public async Task<TripPathViewItem> CalculateAsync(int routeID, CancellationToken cancellationToken = default)
         {
             RouteItem? route = await this.Context.Routes
                 .AsNoTracking()
@@ -41,7 +39,7 @@ namespace gmvTM.Domain.Workers
                 .ConfigureAwait(false);
 
             if (route is null)
-                throw new InvalidOperationException($"the route with {routeID} was not found");
+                throw new InvalidOperationException(string.Format(Messages.RouteNotFound, routeID));
 
             List<StopPlanItem> schedule = await (
                     from plan in this.Context.StopPlans.AsNoTracking()
@@ -53,12 +51,7 @@ namespace gmvTM.Domain.Workers
                 .ConfigureAwait(false);
 
             if (schedule.Count < 2)
-                throw new InvalidOperationException(
-                    $"schedule on route with id{routeID} needs at least two stops");
-
-            ScheduleRunViewItem? run = ScheduleRunViewItemExtensions.GetByIndex(route, runIndex);
-            if (run is not null)
-                run.ApplyTo(schedule);
+                throw new InvalidOperationException(string.Format(Messages.ScheduleNeedsTwoStops, routeID));
 
             HashSet<int> stopIDs = schedule.Select(s => s.StopID).ToHashSet();
             Dictionary<int, StopItem> stopsByID = await this.Context.Stops

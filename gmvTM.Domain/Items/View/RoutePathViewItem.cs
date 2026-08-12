@@ -15,10 +15,10 @@ namespace gmvTM.Domain.Items.View
             ArgumentNullException.ThrowIfNull(cumulativeMeters);
 
             if (points.Count < 2)
-                throw new ArgumentException("A route path needs at least two points.", nameof(points));
+                throw new ArgumentException(Messages.RoutePathNeedsTwoPoints, nameof(points));
 
             if (points.Count != cumulativeMeters.Count)
-                throw new ArgumentException("Cumulative distances must match point count.");
+                throw new ArgumentException(Messages.CumulativeDistancesMustMatchPoints);
 
             this.points = points;
             this.cumulativeMeters = cumulativeMeters;

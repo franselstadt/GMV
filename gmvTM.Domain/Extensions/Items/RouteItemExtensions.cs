@@ -25,20 +25,7 @@ namespace gmvTM.Domain.Extensions.Items
             if (string.IsNullOrWhiteSpace(route.LongName))
                 return route.ShortName.Trim().ToUpperInvariant();
 
-            return route.LongName.Trim();
-        }
-
-        public static RouteDto ToDto(this RouteItem route)
-        {
-            ArgumentNullException.ThrowIfNull(route);
-
-            return new RouteDto
-            {
-                ID = route.ID,
-                ShortName = route.ShortName,
-                LongName = route.LongName,
-                Color = route.Color
-            };
+            return route.LongName.Split('—')[0].Trim();
         }
     }
 }

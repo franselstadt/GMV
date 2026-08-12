@@ -1,10 +1,8 @@
-using System;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using gmvTM.Domain.Items;
+using gmvTM.Domain.Workers;
 
 namespace gmvTM.Domain.Infrastructure.Persistence
 {
@@ -46,24 +44,8 @@ namespace gmvTM.Domain.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
-            IgnoreViewProperties(modelBuilder);
+            new TableConfigurationWorker().Configure(modelBuilder);
             base.OnModelCreating(modelBuilder);
-        }
-
-        private static void IgnoreViewProperties(ModelBuilder modelBuilder)
-        {
-            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
-            {
-                Type clrType = entityType.ClrType;
-                foreach (PropertyInfo property in clrType.GetProperties(BindingFlags.Public | BindingFlags.Instance))
-                {
-                    if (property.GetCustomAttribute<ViewAttribute>(inherit: true) is null)
-                        continue;
-
-                    modelBuilder.Entity(clrType).Ignore(property.Name);
-                }
-            }
         }
 
         int IDatabaseContext.SaveChanges()

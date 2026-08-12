@@ -17,7 +17,6 @@ namespace gmvTM.Domain
             services.AddSingleton<IRoutePathBuilderWorker, RoutePathBuilderWorker>();
             services.AddSingleton<ITripPositionCalculatorWorker, TripPositionCalculatorWorker>();
 
-            services.AddScoped<INextArrivalsCalculatorWorker, NextArrivalsCalculatorWorker>();
             services.AddScoped<ITripPathCalculatorWorker, TripPathCalculatorWorker>();
 
             return services;

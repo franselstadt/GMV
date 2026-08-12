@@ -56,6 +56,10 @@ namespace gmvTM.Domain.Workers
                     cancellationToken);
 
                 await this.Context.Database.ExecuteSqlRawAsync(
+                    $"SELECT SpecialAlert FROM {Tables.Stops} LIMIT 1",
+                    cancellationToken);
+
+                await this.Context.Database.ExecuteSqlRawAsync(
                     $"SELECT 1 FROM {Tables.StopPlans} LIMIT 1",
                     cancellationToken);
 
@@ -70,6 +74,13 @@ namespace gmvTM.Domain.Workers
                 await this.Context.Database.ExecuteSqlRawAsync(
                     $"SELECT StartStopID FROM {Tables.Trips} LIMIT 1",
                     cancellationToken);
+
+                int legacyColumnCount = await this.Context.Database
+                    .SqlQueryRaw<int>($"SELECT COUNT(*) AS \"Value\" FROM pragma_table_info('{Tables.Trips}') WHERE name = 'ScheduleRunIndex'")
+                    .SingleAsync(cancellationToken);
+
+                if (legacyColumnCount > 0)
+                    await this.Context.Database.EnsureDeletedAsync(cancellationToken);
             }
             catch
             {
@@ -80,7 +91,7 @@ namespace gmvTM.Domain.Workers
 
             if (await this.Context.Routes.AnyAsync(cancellationToken))
             {
-                this.logger.LogInformation("Database already seeded");
+                this.logger.LogInformation(Messages.LogDatabaseAlreadySeeded);
                 return;
             }
 
@@ -89,7 +100,7 @@ namespace gmvTM.Domain.Workers
 
 
             RouteSeedDocument seed = await JsonSerializer.DeserializeAsync<RouteSeedDocument>(stream,JsonOptions,cancellationToken)
-                ?? throw new InvalidOperationException($"Failed to deserialize seed file '{seedPath}'.");
+                ?? throw new InvalidOperationException(string.Format(Messages.SeedFileDeserializeFailed, seedPath));
 
             RouteItem route = new RouteItem
             {
@@ -128,7 +139,8 @@ namespace gmvTM.Domain.Workers
                     Name = seedStop.Name,
                     Latitude = seedStop.Latitude,
                     Longitude = seedStop.Longitude,
-                    Sequence = seedStop.Sequence
+                    Sequence = seedStop.Sequence,
+                    SpecialAlert = seedStop.SpecialAlert
                 };
                 await this.Context.Stops.AddAsync(stop, cancellationToken);
             }
@@ -149,18 +161,16 @@ namespace gmvTM.Domain.Workers
             HashSet<int> seededSequences = new HashSet<int>();
             int planCount = 0;
 
-            foreach (SeedStopPlan row in seed.StopPlans.OrderBy(s => s.Sequence).ThenBy(s => s.RunIndex))
+            foreach (SeedStopPlan row in seed.StopPlans.OrderBy(s => s.Sequence))
             {
                 if (!seededSequences.Add(row.Sequence))
                     continue;
 
                 if (!stopsByCode.TryGetValue(row.StopCode, out StopItem? catalogStop))
-                    throw new InvalidOperationException(
-                        $"Scheduled stop references unknown stop code '{row.StopCode}'.");
+                    throw new InvalidOperationException(string.Format(Messages.SeedUnknownStopCode, row.StopCode));
 
                 if (!arrivalSecondsBySequence.TryGetValue(row.Sequence, out int arrivalSeconds))
-                    throw new InvalidOperationException(
-                        $"No baseline arrival seconds for sequence {row.Sequence}.");
+                    throw new InvalidOperationException(string.Format(Messages.NoBaselineArrivalSeconds, row.Sequence));
 
                 await this.Context.StopPlans.AddAsync(
                     new StopPlanItem
@@ -177,7 +187,7 @@ namespace gmvTM.Domain.Workers
             await this.Context.SaveChangesAsync(cancellationToken);
 
             this.logger.LogInformation(
-                "Seeded route {ShortName} with vehicle {FleetCode}, {StopCount} stops, and {ScheduleCount} scheduled stops (arrival seconds at {Mph} mph + {Dwell}s dwell).",
+                Messages.LogSeededRoute,
                 route.ShortName,
                 vehicle.FleetCode,
                 seed.Stops.Count,
@@ -189,7 +199,7 @@ namespace gmvTM.Domain.Workers
         private Dictionary<int, int> BuildArrivalSecondsBySequence(string encodedPolyline, IReadOnlyList<StopItem> stopsInOrder)
         {
             if (stopsInOrder.Count < 2)
-                throw new InvalidOperationException("Route needs at least two stops to build arrival seconds.");
+                throw new InvalidOperationException(Messages.RouteNeedsTwoStopsForArrivalSeconds);
 
             RoutePathViewItem path = this.pathBuilder.Build(this.polylineDecoder.Decode(encodedPolyline));
             double[] alongPath = new double[stopsInOrder.Count];
@@ -231,7 +241,6 @@ namespace gmvTM.Domain.Workers
         }
 
 
-        //copied from claude
         private static string ResolveSeedFilePath()
         {
             string[] candidates =
@@ -249,7 +258,7 @@ namespace gmvTM.Domain.Workers
             }
 
             throw new FileNotFoundException(
-                $"culd not find {Resources.SeedFileName}. Expected under {Resources.SeedOutputFolder}/ next to the this assembly.");
+                string.Format(Messages.SeedFileNotFound, Resources.SeedFileName, Resources.SeedOutputFolder));
         }
 
         #region objects for deserializing the seed file
@@ -280,6 +289,8 @@ namespace gmvTM.Domain.Workers
             public double Longitude { get; set; }
 
             public int Sequence { get; set; }
+
+            public string? SpecialAlert { get; set; }
         }
 
         private sealed class SeedStopPlan
@@ -287,10 +298,6 @@ namespace gmvTM.Domain.Workers
             public string StopCode { get; set; } = null!;
 
             public int Sequence { get; set; }
-
-            public int RunIndex { get; set; }
-
-            public string RunLabel { get; set; } = null!;
         }
 
         #endregion

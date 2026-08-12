@@ -39,7 +39,7 @@ namespace gmvTM.Domain.Workers
             do
             {
                 if (index >= encoded.Length)
-                    throw new FormatException("Invalid encoded polyline.");
+                    throw new FormatException(Messages.InvalidEncodedPolyline);
 
                 b = encoded[index++] - 63;
                 result |= (b & 0x1F) << shift;

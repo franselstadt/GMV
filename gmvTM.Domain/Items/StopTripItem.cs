@@ -23,30 +23,35 @@ namespace gmvTM.Domain.Items
             get { return global::gmvTM.Domain.Tables.StopTrips; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(TripItem), OnDelete = TableDeleteBehavior.Cascade, UniqueGroup = "TripSequence")]
         public int TripID
         {
             get { return this.tripID; }
             set { this.tripID = value; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(StopItem), OnDelete = TableDeleteBehavior.Restrict)]
         public int StopID
         {
             get { return this.stopID; }
             set { this.stopID = value; }
         }
 
+        [TableDefinition(MaxLength = 64, IsRequired = true)]
         public string StopCode
         {
             get { return this.stopCode; }
             set { this.stopCode = value; }
         }
 
+        [TableDefinition(MaxLength = 256, IsRequired = true)]
         public string Name
         {
             get { return this.name; }
             set { this.name = value; }
         }
 
+        [TableDefinition(UniqueGroup = "TripSequence")]
         public int Sequence
         {
             get { return this.sequence; }

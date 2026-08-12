@@ -12,7 +12,7 @@ namespace gmvTM.Domain.Workers
             ArgumentNullException.ThrowIfNull(decodedPoints);
 
             if (decodedPoints.Count < 2)
-                throw new ArgumentException("route path needs at least two points.", nameof(decodedPoints));
+                throw new ArgumentException(Messages.RoutePathNeedsTwoPoints, nameof(decodedPoints));
 
             List<CoordinatesViewItem> points = new List<CoordinatesViewItem>(decodedPoints);
             List<double> cumulative = new List<double>(points.Count) { 0 };

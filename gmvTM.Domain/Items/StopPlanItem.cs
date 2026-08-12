@@ -7,14 +7,13 @@ namespace gmvTM.Domain.Items
         private int stopID;
         private int sequence;
         private int arrivalSeconds;
-        private int runIndex;
-        private string runLabel = string.Empty;
 
         public override string TableName
         {
             get { return global::gmvTM.Domain.Tables.StopPlans; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(StopItem), OnDelete = TableDeleteBehavior.Cascade, IsUnique = true)]
         public int StopID
         {
             get { return this.stopID; }
@@ -31,20 +30,6 @@ namespace gmvTM.Domain.Items
         {
             get { return this.arrivalSeconds; }
             set { this.arrivalSeconds = value; }
-        }
-
-        [View]
-        public int RunIndex
-        {
-            get { return this.runIndex; }
-            set { this.runIndex = value; }
-        }
-
-        [View]
-        public string RunLabel
-        {
-            get { return this.runLabel; }
-            set { this.runLabel = value ?? string.Empty; }
         }
     }
 }

@@ -10,24 +10,29 @@ namespace gmvTM.Domain.Items
         private double latitude;
         private double longitude;
         private int sequence;
+        private string? specialAlert;
 
         public override string TableName
         {
             get { return global::gmvTM.Domain.Tables.Stops; }
         }
 
+        [TableDefinition(ForeignKeyOf = typeof(RouteItem), OnDelete = TableDeleteBehavior.Cascade, UniqueGroup = "RouteStopCode")]
+        [TableDefinition(UniqueGroup = "RouteSequence")]
         public int RouteID
         {
             get { return this.routeID; }
             set { this.routeID = value; }
         }
 
+        [TableDefinition(MaxLength = 64, IsRequired = true, UniqueGroup = "RouteStopCode")]
         public string StopCode
         {
             get { return this.stopCode; }
             set { this.stopCode = value; }
         }
 
+        [TableDefinition(MaxLength = 256, IsRequired = true)]
         public string Name
         {
             get { return this.name; }
@@ -45,10 +50,18 @@ namespace gmvTM.Domain.Items
             get { return this.longitude; }
             set { this.longitude = value; }
         }
+        [TableDefinition(UniqueGroup = "RouteSequence")]
         public int Sequence
         {
             get { return this.sequence; }
             set { this.sequence = value; }
+        }
+
+        [TableDefinition(MaxLength = 256)]
+        public string? SpecialAlert
+        {
+            get { return this.specialAlert; }
+            set { this.specialAlert = value; }
         }
     }
 }

@@ -19,24 +19,28 @@ namespace gmvTM.Domain.Items
             get { return global::gmvTM.Domain.Tables.Vehicles; }
         }
 
+        [TableDefinition(MaxLength = 64, IsRequired = true, IsUnique = true)]
         public string FleetCode
         {
             get { return this.fleetCode; }
             set { this.fleetCode = value; }
         }
 
+        [TableDefinition(MaxLength = 64, IsRequired = true)]
         public string Make
         {
             get { return this.make; }
             set { this.make = value; }
         }
 
+        [TableDefinition(MaxLength = 64, IsRequired = true)]
         public string Model
         {
             get { return this.model; }
             set { this.model = value; }
         }
 
+        [TableDefinition(MaxLength = 32, IsRequired = true, IsUnique = true)]
         public string LicensePlate
         {
             get { return this.licensePlate; }

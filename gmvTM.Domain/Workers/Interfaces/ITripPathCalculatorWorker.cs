@@ -6,7 +6,7 @@ namespace gmvTM.Domain.Workers.Interfaces
 {
     public interface ITripPathCalculatorWorker : IWorker
     {
-        public TripPathViewItem Calculate(int routeID, int runIndex);
-        public Task<TripPathViewItem> CalculateAsync(int routeID, int runIndex, CancellationToken cancellationToken = default);
+        public TripPathViewItem Calculate(int routeID);
+        public Task<TripPathViewItem> CalculateAsync(int routeID, CancellationToken cancellationToken = default);
     }
 }

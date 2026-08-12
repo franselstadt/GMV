@@ -1,15 +1,10 @@
 using System.Collections.Generic;
+using gmvTM.Domain.Items.View;
 
 namespace gmvTM.Domain
 {
-    public class Point
-    {
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-    }
-
     public class RouteShapeDto
     {
-        public List<Point> Points { get; set; }
+        public List<CoordinatesViewItem> Points { get; set; } = new List<CoordinatesViewItem>();
     }
 }
