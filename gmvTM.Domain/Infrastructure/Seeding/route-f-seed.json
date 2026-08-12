@@ -1,0 +1,1164 @@
+{
+  "route": {
+    "short_name": "F",
+    "long_name": "DASH F \u2014 Financial District/USC",
+    "color": "#DE1F82",
+    "encoded_polyline": "qpznEvbxpUhAdAlAa@dDaB^Wn@s@r@w@`CaEf@q@pCzB~DbErC|BbBpAnAhA~BbCjGrFxAtAdB`BtBpBvCnCfEhDlFdFw@rA}@rAWh@x@z@dCjChBzAfCdCfDrCnAbAzCrA~BrAtEpCvBlAzAp@`Bx@zBlAzC`BpAp@jBbAzEnCnAh@pCbBfCrA|@j@z@f@XNBJ^TlBdA~A~@^BvDpBfDjB|GxDnEdCpEdCbHtDvBjApA|@~CpBjKjFPhCE`R?lCCzD@pEAzE?~DC|BcAJuCKaDJeFKwDJ}FQyE?qCB?i@BiCEwDAaEJyBVwA`AmChAcDlAyCv@cC|AsEXq@zCgJjCuHkBy@_@]yAu@iCsAgBgAeCuAyC{A}D}BaDkBaBy@{@k@uCuAsEgCkDoBoBcAmC}AsDsBqHaEaHqDwBoAwCgBoP_JaEuCsBwBWUi@_@wAkAgB_BuBuB{@}@aAy@aCyBiB_BoBmByByBkB}AiCqBwBqBiBcBcDuCwB{BgAaAq@u@iA_A_D{CiC{BsBeByCoCsBkBqAmA}@~A_BnCy@vAgAfBnApAp@l@"
+  },
+  "stops": [
+    {
+      "gtfs_stop_id": "4896678",
+      "stop_code": "6041",
+      "name": "Beaudry Ave & 3rd St",
+      "lat": 34.055931,
+      "lon": -118.257244,
+      "sequence": 0
+    },
+    {
+      "gtfs_stop_id": "4896693",
+      "stop_code": "6138",
+      "name": "4th St & Figueroa St",
+      "lat": 34.053677,
+      "lon": -118.25627,
+      "sequence": 1
+    },
+    {
+      "gtfs_stop_id": "4896834",
+      "stop_code": "6021",
+      "name": "Flower St & 5th St",
+      "lat": 34.051139,
+      "lon": -118.256648,
+      "sequence": 2
+    },
+    {
+      "gtfs_stop_id": "4896854",
+      "stop_code": "6139",
+      "name": "Flower St & 7th St",
+      "lat": 34.048855,
+      "lon": -118.258717,
+      "sequence": 3
+    },
+    {
+      "gtfs_stop_id": "4896694",
+      "stop_code": "6140",
+      "name": "Flower St & 8th St",
+      "lat": 34.047066,
+      "lon": -118.260366,
+      "sequence": 4
+    },
+    {
+      "gtfs_stop_id": "4896676",
+      "stop_code": "9638",
+      "name": "Flower St & 9th St",
+      "lat": 34.045968,
+      "lon": -118.261431,
+      "sequence": 5
+    },
+    {
+      "gtfs_stop_id": "4896695",
+      "stop_code": "6142",
+      "name": "Flower St & Olympic Blvd",
+      "lat": 34.04521,
+      "lon": -118.262147,
+      "sequence": 6
+    },
+    {
+      "gtfs_stop_id": "4896696",
+      "stop_code": "6143",
+      "name": "Figueroa & 12th St (Crypto.com Arena)",
+      "lat": 34.04277,
+      "lon": -118.266202,
+      "sequence": 7
+    },
+    {
+      "gtfs_stop_id": "4896697",
+      "stop_code": "6144",
+      "name": "Figueroa St & Pico Blvd",
+      "lat": 34.04032,
+      "lon": -118.268412,
+      "sequence": 8
+    },
+    {
+      "gtfs_stop_id": "4896698",
+      "stop_code": "6145",
+      "name": "Figueroa St & Venice Blvd",
+      "lat": 34.037227,
+      "lon": -118.270371,
+      "sequence": 9
+    },
+    {
+      "gtfs_stop_id": "4896699",
+      "stop_code": "6146",
+      "name": "Figueroa St & Washington Blvd",
+      "lat": 34.034466,
+      "lon": -118.272039,
+      "sequence": 10
+    },
+    {
+      "gtfs_stop_id": "4896700",
+      "stop_code": "6147",
+      "name": "Figueroa St & 23rd St",
+      "lat": 34.030714,
+      "lon": -118.274453,
+      "sequence": 11
+    },
+    {
+      "gtfs_stop_id": "4896701",
+      "stop_code": "6148",
+      "name": "Figueroa St & Adams Blvd",
+      "lat": 34.027993,
+      "lon": -118.276164,
+      "sequence": 12
+    },
+    {
+      "gtfs_stop_id": "4896702",
+      "stop_code": "6149",
+      "name": "Figueroa St & 30th St",
+      "lat": 34.024681,
+      "lon": -118.278304,
+      "sequence": 13
+    },
+    {
+      "gtfs_stop_id": "4896703",
+      "stop_code": "6150",
+      "name": " Figueroa St & Jefferson Blvd (Southbound)",
+      "lat": 34.021573,
+      "lon": -118.280257,
+      "sequence": 14
+    },
+    {
+      "gtfs_stop_id": "4896704",
+      "stop_code": "6151",
+      "name": "Figueroa St & USC McCarthy Way",
+      "lat": 34.020363,
+      "lon": -118.281136,
+      "sequence": 15
+    },
+    {
+      "gtfs_stop_id": "4896707",
+      "stop_code": "6216",
+      "name": "Exposition Blvd & Trousdale Pkwy",
+      "lat": 34.018323,
+      "lon": -118.286769,
+      "sequence": 16
+    },
+    {
+      "gtfs_stop_id": "4896705",
+      "stop_code": "6152",
+      "name": "Exposition Blvd & USC Watt Way",
+      "lat": 34.018332,
+      "lon": -118.288765,
+      "sequence": 17
+    },
+    {
+      "gtfs_stop_id": "4896677",
+      "stop_code": "6040",
+      "name": "Vermont Ave & Exposition Blvd",
+      "lat": 34.018705,
+      "lon": -118.291512,
+      "sequence": 18
+    },
+    {
+      "gtfs_stop_id": "4896679",
+      "stop_code": "6119",
+      "name": "Vermont Ave & 37th Pl",
+      "lat": 34.02026,
+      "lon": -118.291508,
+      "sequence": 19
+    },
+    {
+      "gtfs_stop_id": "4896680",
+      "stop_code": "6120",
+      "name": "Vermont Ave & 36th Pl",
+      "lat": 34.022333,
+      "lon": -118.291512,
+      "sequence": 20
+    },
+    {
+      "gtfs_stop_id": "4896681",
+      "stop_code": "6121",
+      "name": "Jefferson Blvd & Vermont Ave",
+      "lat": 34.025419,
+      "lon": -118.291233,
+      "sequence": 21
+    },
+    {
+      "gtfs_stop_id": "4896682",
+      "stop_code": "6122",
+      "name": "Jefferson Blvd & McClintock Ave",
+      "lat": 34.02493,
+      "lon": -118.286887,
+      "sequence": 22
+    },
+    {
+      "gtfs_stop_id": "4896683",
+      "stop_code": "6123",
+      "name": "Jefferson Blvd & Hoover St",
+      "lat": 34.023295,
+      "lon": -118.283331,
+      "sequence": 23
+    },
+    {
+      "gtfs_stop_id": "4896684",
+      "stop_code": "6124",
+      "name": "Figueroa St & Jefferson Blvd (Northbound)",
+      "lat": 34.022512,
+      "lon": -118.279542,
+      "sequence": 24
+    },
+    {
+      "gtfs_stop_id": "4896685",
+      "stop_code": "6125",
+      "name": "Figueroa St & 30th St",
+      "lat": 34.024845,
+      "lon": -118.278058,
+      "sequence": 25
+    },
+    {
+      "gtfs_stop_id": "4896686",
+      "stop_code": "6126",
+      "name": "Figueroa St & Adams Blvd",
+      "lat": 34.02786,
+      "lon": -118.276137,
+      "sequence": 26
+    },
+    {
+      "gtfs_stop_id": "4896687",
+      "stop_code": "6127",
+      "name": "Figueroa St & 23rd St",
+      "lat": 34.030834,
+      "lon": -118.274254,
+      "sequence": 27
+    },
+    {
+      "gtfs_stop_id": "4896688",
+      "stop_code": "6128",
+      "name": "Figueroa St & Washington Blvd",
+      "lat": 34.034528,
+      "lon": -118.271888,
+      "sequence": 28
+    },
+    {
+      "gtfs_stop_id": "4896689",
+      "stop_code": "6129",
+      "name": "Figueroa St & Venice Blvd",
+      "lat": 34.037338,
+      "lon": -118.270081,
+      "sequence": 29
+    },
+    {
+      "gtfs_stop_id": "5765892",
+      "stop_code": "6130",
+      "name": "Figueroa St & 12th St",
+      "lat": 34.041686,
+      "lon": -118.266968,
+      "sequence": 30
+    },
+    {
+      "gtfs_stop_id": "5278238",
+      "stop_code": "6132",
+      "name": "Figueroa & 11th St (Crypto.com Arena)",
+      "lat": 34.04387,
+      "lon": -118.264936,
+      "sequence": 31
+    },
+    {
+      "gtfs_stop_id": "4896691",
+      "stop_code": "6133",
+      "name": "Figueroa St & Olympic Blvd",
+      "lat": 34.045379,
+      "lon": -118.263563,
+      "sequence": 32
+    },
+    {
+      "gtfs_stop_id": "4896692",
+      "stop_code": "6135",
+      "name": "Figueroa St & 8th St",
+      "lat": 34.047775,
+      "lon": -118.261364,
+      "sequence": 33
+    },
+    {
+      "gtfs_stop_id": "4896846",
+      "stop_code": "6136",
+      "name": "Figueroa St & 7th St",
+      "lat": 34.049726,
+      "lon": -118.259545,
+      "sequence": 34
+    },
+    {
+      "gtfs_stop_id": "4896850",
+      "stop_code": "6137",
+      "name": "Figueroa St & 5th St",
+      "lat": 34.052108,
+      "lon": -118.257217,
+      "sequence": 35
+    }
+  ],
+  "stop_plans": [
+    {
+      "stop_code": "6041",
+      "sequence": 0,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6138",
+      "sequence": 1,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6021",
+      "sequence": 2,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6139",
+      "sequence": 3,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6140",
+      "sequence": 4,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "9638",
+      "sequence": 5,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6142",
+      "sequence": 6,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6143",
+      "sequence": 7,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6144",
+      "sequence": 8,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6145",
+      "sequence": 9,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6146",
+      "sequence": 10,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6147",
+      "sequence": 11,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6148",
+      "sequence": 12,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6149",
+      "sequence": 13,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6150",
+      "sequence": 14,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6151",
+      "sequence": 15,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6216",
+      "sequence": 16,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6152",
+      "sequence": 17,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6040",
+      "sequence": 18,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6119",
+      "sequence": 19,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6120",
+      "sequence": 20,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6121",
+      "sequence": 21,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6122",
+      "sequence": 22,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6123",
+      "sequence": 23,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6124",
+      "sequence": 24,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6125",
+      "sequence": 25,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6126",
+      "sequence": 26,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6127",
+      "sequence": 27,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6128",
+      "sequence": 28,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6129",
+      "sequence": 29,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6130",
+      "sequence": 30,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6132",
+      "sequence": 31,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6133",
+      "sequence": 32,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6135",
+      "sequence": 33,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6136",
+      "sequence": 34,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6137",
+      "sequence": 35,
+      "run_index": 0,
+      "run_label": "DASH F 07:00"
+    },
+    {
+      "stop_code": "6041",
+      "sequence": 0,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6138",
+      "sequence": 1,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6021",
+      "sequence": 2,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6139",
+      "sequence": 3,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6140",
+      "sequence": 4,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "9638",
+      "sequence": 5,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6142",
+      "sequence": 6,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6143",
+      "sequence": 7,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6144",
+      "sequence": 8,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6145",
+      "sequence": 9,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6146",
+      "sequence": 10,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6147",
+      "sequence": 11,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6148",
+      "sequence": 12,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6149",
+      "sequence": 13,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6150",
+      "sequence": 14,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6151",
+      "sequence": 15,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6216",
+      "sequence": 16,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6152",
+      "sequence": 17,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6040",
+      "sequence": 18,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6119",
+      "sequence": 19,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6120",
+      "sequence": 20,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6121",
+      "sequence": 21,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6122",
+      "sequence": 22,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6123",
+      "sequence": 23,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6124",
+      "sequence": 24,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6125",
+      "sequence": 25,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6126",
+      "sequence": 26,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6127",
+      "sequence": 27,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6128",
+      "sequence": 28,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6129",
+      "sequence": 29,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6130",
+      "sequence": 30,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6132",
+      "sequence": 31,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6133",
+      "sequence": 32,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6135",
+      "sequence": 33,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6136",
+      "sequence": 34,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6137",
+      "sequence": 35,
+      "run_index": 1,
+      "run_label": "DASH F 12:00"
+    },
+    {
+      "stop_code": "6041",
+      "sequence": 0,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6138",
+      "sequence": 1,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6021",
+      "sequence": 2,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6139",
+      "sequence": 3,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6140",
+      "sequence": 4,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "9638",
+      "sequence": 5,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6142",
+      "sequence": 6,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6143",
+      "sequence": 7,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6144",
+      "sequence": 8,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6145",
+      "sequence": 9,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6146",
+      "sequence": 10,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6147",
+      "sequence": 11,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6148",
+      "sequence": 12,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6149",
+      "sequence": 13,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6150",
+      "sequence": 14,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6151",
+      "sequence": 15,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6216",
+      "sequence": 16,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6152",
+      "sequence": 17,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6040",
+      "sequence": 18,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6119",
+      "sequence": 19,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6120",
+      "sequence": 20,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6121",
+      "sequence": 21,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6122",
+      "sequence": 22,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6123",
+      "sequence": 23,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6124",
+      "sequence": 24,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6125",
+      "sequence": 25,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6126",
+      "sequence": 26,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6127",
+      "sequence": 27,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6128",
+      "sequence": 28,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6129",
+      "sequence": 29,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6130",
+      "sequence": 30,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6132",
+      "sequence": 31,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6133",
+      "sequence": 32,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6135",
+      "sequence": 33,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6136",
+      "sequence": 34,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6137",
+      "sequence": 35,
+      "run_index": 2,
+      "run_label": "DASH F 16:00"
+    },
+    {
+      "stop_code": "6041",
+      "sequence": 0,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6138",
+      "sequence": 1,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6021",
+      "sequence": 2,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6139",
+      "sequence": 3,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6140",
+      "sequence": 4,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "9638",
+      "sequence": 5,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6142",
+      "sequence": 6,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6143",
+      "sequence": 7,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6144",
+      "sequence": 8,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6145",
+      "sequence": 9,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6146",
+      "sequence": 10,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6147",
+      "sequence": 11,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6148",
+      "sequence": 12,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6149",
+      "sequence": 13,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6150",
+      "sequence": 14,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6151",
+      "sequence": 15,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6216",
+      "sequence": 16,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6152",
+      "sequence": 17,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6040",
+      "sequence": 18,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6119",
+      "sequence": 19,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6120",
+      "sequence": 20,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6121",
+      "sequence": 21,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6122",
+      "sequence": 22,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6123",
+      "sequence": 23,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6124",
+      "sequence": 24,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6125",
+      "sequence": 25,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6126",
+      "sequence": 26,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6127",
+      "sequence": 27,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6128",
+      "sequence": 28,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6129",
+      "sequence": 29,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6130",
+      "sequence": 30,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6132",
+      "sequence": 31,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6133",
+      "sequence": 32,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6135",
+      "sequence": 33,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6136",
+      "sequence": 34,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    },
+    {
+      "stop_code": "6137",
+      "sequence": 35,
+      "run_index": 3,
+      "run_label": "DASH F 19:50"
+    }
+  ]
+}
