@@ -1,0 +1,150 @@
+--mon
+
+10:00
+started by navigating to ladottransit.com/dash/downtown and studying route F, the properetries attributes and relationships it hold, to get a better understanding of how i would design the schema or objects within the domain. then went to ladotbus.com/route/4445, route F, seems the routecode or routeID of F is 4445. opened chrome dev tools, inspected network, monitoring rest calls to understand relationship between ui and entities. studied the rtpi route endpoint. note to LADOT api is missing versioning
+
+10:30
+postman, called the rtpi endpoint myself, routes/4445/vehicles. later reliazed rtpi is just a wrapper, path gets posted through to gmv sync i assume, routes/4445/vehicles etc. studied the flow and call structure
+
+11:00
+stumbled on ladots GTFS zip, studied the csv. now envisioning a more generic solution, gtfs viewer where you post the zip and view it. also thinking of mocking vechiles on route with websocket of some type, ladot updates on an interval it seems. not digressing from task at hand tho
+
+12:00
+remeber KISS. dont overengineer. starting with schema objects, entityframework simplist orm here, relativelity small solution
+
+13:00
+calling tghe solution gmv time and motion. basic ddd principles for future scalability, no redis for static data, no mediatr, overkill, defeats KISS. if scaling then yes
+
+13:15
+project layers, domain contracts infastructure application. starting domain + contracts to map schema and run scenarios. thinking of running simulation for vehicles. maybe boards/signs on the map. copying code from my older projects to get the wheel rolling fast
+
+13:45
+stop draw would be intresting note to self. wait, maybe seed data import from the gtfs zip, defeats kiss but would be so cool. c# attributes mapping csv to my objects. ask first maybe
+
+14:20
+copied my baseitem basecollection pattern from older project. persistable inherits baseitem, crud on the item sync+async, collections for bulk. calc stuff = viewitems. saves me a day easy
+
+14:55
+entities from the rtpi payloads, route stop vehicle trip stopplan stoptrip. trip = vehicle+route, stoptrip is where the time and motion lands
+
+15:30
+polyline decode, 5 bit chunks zigzag, fiddly. claude assisted, credited in code. tests against a known string
+
+16:10
+haversine + distance along shape. datetime provider behind interface for frozen clock in tests. bigger system id use epoch, noted in code
+
+16:45
+collections + interfaces. query logic in concrete collection, exposed via extensions, services never see ef
+
+17:30
+ef core sqlite wired. built route-f-seed.json by hand from gtfs csv + rtpi captures. planned seconds from previous stop, spot checked vs ladot times at 25mph, close enough
+
+18:15
+domain tests green. polyline coords + architecture test so layers dont bleed
+
+18:55
+done for today. bugging me, fixed timetable makes no sense for time and motion demo, schedule should be seconds from sim start. sleep on it
+
+
+
+
+--tue
+
+09:12
+plan, simulation math, application, server. frontend if i survive
+
+09:40
+trip path calculator, walks stop plan, gives stops + cumulative planned seconds + distances in one viewitem
+
+10:25
+position math. elapsed seconds + mph + dwell -> where on polyline and what phase. claude assisted the math, segment interpolation especially. remembered alot from previous project but simulating is new, honest comment left in code
+
+11:05
+phases, traveling approaching doorsopen doorsclosing. approaching = lead seconds before arrival, doors closing gets the last second for announcement
+
+11:40
+simulation service, stages trip + stoptrips, activesimulation in memory. prod would be redis, noted in code
+
+12:15
+runindex from my old project doesnt fit, that assumed fixed daily runs. ripped out. seconds since start + sequence. cleaner
+
+12:50
+edge case, bus passed your stop -> estimate rolls to next loop, not negative. claude assisted wrap around, tests to pin it
+
+13:30
+background service ticks 1s, pushes positions. signalr for transport, know kafka rabbit socketio but signalr rusty since blazor diff streaming. claude+google assisted ws handling
+
+14:10
+controllers thin. exception middleware with error envelope. usually add slack/email notify, not here
+
+14:50
+swagger + versioning day one, see monday note to ladot lol
+
+15:25
+serilog console + rolling file, request logging
+
+16:00
+prometheus, sims started stopped counters, active gauge, next arrival counter. simple. /metrics mapped
+
+16:40
+app tests nsubstitute, integration tests webapplicationfactory, throwaway sqlite, frozen clock
+
+17:25
+green. frontend. vite react chakra react-leaflet. carto light tiles closest to ladot map
+
+18:05
+map draws shape in route color, stop markers, fitbounds helper. leaflet default markers dont survive vite bundling, divicons inline html instead
+
+18:50
+side panel = wizard. pick start stop then live view, sliders mph + seconds at stop
+
+19:30
+signalr client wired. refs mirror state for the callback else closure sees stale values, classic. bus moves down figueroa, satisfying
+
+20:10
+web speech announcements engels then spaans like the real dash buses. dedupe by phase+stop key or it repeats every tick
+
+20:50
+check arrival, planned vs actual, ontime late ahead. behind schedule pops dialog
+
+
+
+21:14
+loop closes end to end. tomorrow vanilla vs2022 + polish
+
+
+---wed
+
+
+09:12
+fresh clone vanilla vs2022 doesnt run ofc. global.json pinned sdk i dont have, esproj hardcoded sdk path, wrong project guid in sln. fixed all 3, claude chased the guids. msbuild targets for node check + npm install on first debug build
+
+09:45
+node_modules was unix installed, windows shims missing, reinstalled. spaproxy pointed https 5173, vite serves http. F5 works. readme requirements updated
+
+
+10:20
+simple auth, small exam project so basic http auth, one username no claims, sha256 hash in appsettings not plaintext. swagger authorize button
+
+10:55
+client still 401ing. vite proxy hit http port, server redirects https, browser strips Authorization on cross origin redirect. asked ai to confirm, pointed proxy straight at https. remember this one
+
+11:30
+fleet code in hub url now, /hubs/vehicle/{fleetCodes}, groups on connect, reconnect rejoins free, dropped subscribe dance
+
+11:55
+easter egg, special alert on crypto.com arena stops, go los angeles dodgers go, spoken after approaching + gif popup only while the special message plays
+
+12:30
+traveltools class for mph/meters math. dev console window on debug listing swagger api odata prometheus hub urls
+
+13:00
+client restructured like backend, dtos one per file, globals, tools. claude speeding up react alot, i scaffold object classes/dtos in ts and it fills in components
+
+
+13:35
+ui pass. step headers gone, 6142 preselected, arrival card = black led panel amber glow, DASH F started hh:mm from stop, planned actual + status led green red blue
+full regession green, typecheck clean, fresh clone F5 ok, reseed + odata checked in swagger
+readme rewrite, gave claude my notes to spellcheck + shape, it generated the erd schema, docker compose steps, requirements table, setup.bat for clean windows
+
+
