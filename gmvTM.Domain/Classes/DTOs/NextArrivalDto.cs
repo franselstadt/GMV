@@ -1,8 +1,10 @@
 using System;
 
+using gmvTM.Domain.Classes.DTOs.Base;
+
 namespace gmvTM.Domain
 {
-    public class NextArrivalDto
+    public class NextArrivalDto : BaseDTO
     {
         public string StopCode { get; set; }
         public string RunLabel { get; set; }

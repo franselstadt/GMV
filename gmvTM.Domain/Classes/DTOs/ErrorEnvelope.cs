@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 
+using gmvTM.Domain.Classes.DTOs.Base;
+
 namespace gmvTM.Domain
 {
-    public class ErrorEnvelope
+    public class ErrorEnvelope : BaseDTO
     {
         public string TraceID { get; set; }
         public string Title { get; set; }

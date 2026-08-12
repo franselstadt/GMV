@@ -65,6 +65,8 @@ namespace gmvTM.Domain.Strategies.ORM.EFCore.Collections
             ArgumentNullException.ThrowIfNull(trips);
 
             IReadOnlyList<TripItem> assignments = await trips.ReadByRouteIDAsync(routeID, cancellationToken).ConfigureAwait(false);
+            
+            //chec on trip
             HashSet<int> assignedVehicleIDs = assignments
                 .Select(t => t.VehicleID)
                 .ToHashSet();

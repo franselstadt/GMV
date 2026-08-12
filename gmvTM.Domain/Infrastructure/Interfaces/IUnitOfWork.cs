@@ -2,9 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using gmvTM.Domain.Collections.Interfaces;
 
-namespace gmvTM.Domain.Infrastructure
+namespace gmvTM.Domain.Infrastructure.Interfaces
 {
-    public interface IUnitOfWork
+    public interface ISimpleUnitOfWork
     {
         IRouteCollection Routes
         {

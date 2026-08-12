@@ -1,9 +1,11 @@
 using System;
 using System.Text.Json.Serialization;
 
+using gmvTM.Domain.Classes.DTOs.Base;
+
 namespace gmvTM.Domain
 {
-    public class VehiclePositionDto
+    public class VehiclePositionDto : BaseDTO
     {
         [JsonPropertyName("simulationRunId")]
         public int SimulationRunID { get; set; }

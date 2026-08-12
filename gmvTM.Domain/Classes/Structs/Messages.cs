@@ -32,6 +32,10 @@ namespace gmvTM.Domain
         public string ItemCannotBeCreatedThroughCollection => "Item type '{0}' cannot be created through '{1}' collection.";
         public string ItemCannotBeUpdatedThroughCollection => "Item type '{0}' cannot be updated through '{1}' collection.";
         public string ForeignKeyPrincipalNotPersistable => "'{0}.{1}' references '{2}' which is not a persistable item.";
+        public string FactoryPhantomRequired => "A phantom object is required to create an item.";
+        public string FactoryPropertyNotFound => "Phantom property '{0}' does not match any writable property on '{1}'.";
+        public string FactoryPropertyTypeMismatch => "Phantom property '{0}' of type '{1}' cannot be assigned to '{2}.{3}' of type '{4}'.";
+        public string LogFactoryDynamicPropertyAdded => "Phantom property {PropertyName} does not exist on {DtoType}; carried as a dynamic property.";
         public string TripNeedsTwoStops => "A trip needs at least two stops.";
         public string RoutePathNeedsTwoPoints => "A route path needs at least two points.";
         public string CumulativeDistancesMustMatchPoints => "Cumulative distances must match point count.";

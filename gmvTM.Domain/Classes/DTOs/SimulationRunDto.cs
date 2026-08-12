@@ -1,9 +1,11 @@
 using System;
 using System.Text.Json.Serialization;
 
+using gmvTM.Domain.Classes.DTOs.Base;
+
 namespace gmvTM.Domain
 {
-    public class SimulationRunDto
+    public class SimulationRunDto : BaseDTO
     {
         [JsonPropertyName("id")]
         public int ID { get; set; }

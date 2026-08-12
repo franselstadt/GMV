@@ -1,9 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using gmvTM.Domain.Infrastructure;
 using gmvTM.Domain.Items;
 using gmvTM.Domain.Strategies.ORM.EFCore.Workers;
+using gmvTM.Domain.Infrastructure.Interfaces;
 
 namespace gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure
 {

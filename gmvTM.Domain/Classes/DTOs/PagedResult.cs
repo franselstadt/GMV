@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 
+using gmvTM.Domain.Classes.DTOs.Base;
+
 namespace gmvTM.Domain
 {
-    public class PagedResult<T>
+    public class PagedResult<T> : BaseDTO
     {
         public List<T> Items { get; set; }
         public int Page { get; set; }

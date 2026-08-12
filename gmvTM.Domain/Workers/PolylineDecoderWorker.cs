@@ -5,6 +5,8 @@ using gmvTM.Domain.Workers.Interfaces;
 
 namespace gmvTM.Domain.Workers
 {
+
+    //claude assisted me with this code
     public sealed class PolylineDecoderWorker : IPolylineDecoderWorker
     {
         private static readonly double Factor = Math.Pow(10, 5);

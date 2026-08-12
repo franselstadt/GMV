@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using gmvTM.Domain.Collections.Interfaces;
 using gmvTM.Domain.Workers.Interfaces;
+using gmvTM.Domain.Infrastructure.Interfaces;
 
 namespace gmvTM.Domain.Infrastructure
 {
@@ -35,7 +36,7 @@ namespace gmvTM.Domain.Infrastructure
             services.AddScoped<ITripCollection, Strategies.ORM.EFCore.Collections.TripCollection>();
             services.AddScoped<IStopPlanCollection, Strategies.ORM.EFCore.Collections.StopPlanCollection>();
             services.AddScoped<IStopTripCollection, Strategies.ORM.EFCore.Collections.StopTripCollection>();
-            services.AddScoped<IUnitOfWork, Strategies.ORM.EFCore.Infrastructure.UnitOfWork>();
+            services.AddScoped<ISimpleUnitOfWork, Strategies.ORM.EFCore.Infrastructure.UnitOfWork>();
             services.AddScoped<IDataSeederWorker, Strategies.ORM.EFCore.Workers.DataSeederWorker>();
             services.AddScoped<ITripPathCalculatorWorker, Strategies.ORM.EFCore.Workers.TripPathCalculatorWorker>();
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using gmvTM.Domain.Items;
 
-namespace gmvTM.Domain.Infrastructure
+namespace gmvTM.Domain.Infrastructure.Interfaces
 {
     public interface IDatabaseContext
     {

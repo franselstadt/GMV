@@ -101,27 +101,19 @@ namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
             RouteSeedDocument seed = await JsonSerializer.DeserializeAsync<RouteSeedDocument>(stream,JsonOptions,cancellationToken)
                 ?? throw new InvalidOperationException(string.Format(gmvDomain.Messages.SeedFileDeserializeFailed, seedPath));
 
-            RouteItem route = new RouteItem
-            {
-                ShortName = seed.Route.ShortName,
-                LongName = seed.Route.LongName,
-                Color = seed.Route.Color,
-                EncodedPolyline = seed.Route.EncodedPolyline
-            };
+            RouteItem route = RouteFactory.CreateItem(seed.Route.ShortName, seed.Route.LongName, seed.Route.Color, seed.Route.EncodedPolyline);
 
             await this.Context.Routes.AddAsync(route, cancellationToken);
             await this.Context.SaveChangesAsync(cancellationToken);
 
-            VehicleItem vehicle = new VehicleItem
-            {
-                FleetCode = gmvDomain.Resources.SampleFleetCode,
-                Make = gmvDomain.Resources.SampleVehicleMake,
-                Model = gmvDomain.Resources.SampleVehicleModel,
-                LicensePlate = gmvDomain.Resources.SampleLicensePlate,
-                Capacity = gmvDomain.Resources.SampleVehicleCapacity,
-                ModelYear = gmvDomain.Resources.SampleVehicleModelYear,
-                WheelchairAccessible = true
-            };
+            VehicleItem vehicle = VehicleFactory.CreateItem(
+                gmvDomain.Resources.SampleFleetCode,
+                gmvDomain.Resources.SampleVehicleMake,
+                gmvDomain.Resources.SampleVehicleModel,
+                gmvDomain.Resources.SampleLicensePlate,
+                gmvDomain.Resources.SampleVehicleCapacity,
+                gmvDomain.Resources.SampleVehicleModelYear,
+                wheelchairAccessible: true);
 
 
             await this.Context.Vehicles.AddAsync(vehicle, cancellationToken);
@@ -131,16 +123,14 @@ namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
             
             foreach (SeedStop seedStop in seed.Stops.OrderBy(s => s.Sequence))
             {
-                StopItem stop = new StopItem
-                {
-                    RouteID = route.ID,
-                    StopCode = seedStop.StopCode,
-                    Name = seedStop.Name,
-                    Latitude = seedStop.Latitude,
-                    Longitude = seedStop.Longitude,
-                    Sequence = seedStop.Sequence,
-                    SpecialAlert = seedStop.SpecialAlert
-                };
+                StopItem stop = StopFactory.CreateItem(
+                    route.ID,
+                    seedStop.StopCode,
+                    seedStop.Name,
+                    seedStop.Latitude,
+                    seedStop.Longitude,
+                    seedStop.Sequence,
+                    seedStop.SpecialAlert);
                 await this.Context.Stops.AddAsync(stop, cancellationToken);
             }
 
@@ -172,12 +162,7 @@ namespace gmvTM.Domain.Strategies.ORM.EFCore.Workers
                     throw new InvalidOperationException(string.Format(gmvDomain.Messages.NoBaselineArrivalSeconds, row.Sequence));
 
                 await this.Context.StopPlans.AddAsync(
-                    new StopPlanItem
-                    {
-                        StopID = catalogStop.ID,
-                        Sequence = row.Sequence,
-                        ArrivalSeconds = arrivalSeconds
-                    },
+                    StopPlanFactory.CreateItem(catalogStop.ID, row.Sequence, arrivalSeconds),
                     cancellationToken);
 
                 planCount++;

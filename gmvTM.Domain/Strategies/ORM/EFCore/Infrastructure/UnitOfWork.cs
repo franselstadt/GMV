@@ -2,11 +2,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using gmvTM.Domain.Collections.Interfaces;
-using gmvTM.Domain.Infrastructure;
+using gmvTM.Domain.Infrastructure.Interfaces;
 
 namespace gmvTM.Domain.Strategies.ORM.EFCore.Infrastructure
 {
-    public sealed class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : ISimpleUnitOfWork
     {
         private readonly DatabaseContext context;
         private readonly IRouteCollection routes;
