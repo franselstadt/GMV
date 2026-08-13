@@ -8,6 +8,8 @@ The development synopsis (what was built when, and where AI assisted) lives in [
 
 ## Quick start
 
+**Fastest way after downloading:** just run `setup.bat` in the repo root. It checks every requirement (.NET 8 SDK, Node 20+, npm, optionally Visual Studio), installs the client packages, builds the solution, starts the server, and opens the app in your browser.
+
 | How | Steps |
 |---|---|
 | **Windows, one script** | Run `setup.bat` — checks all requirements, installs client packages, builds, runs, opens the browser |
@@ -213,6 +215,16 @@ Non-DB: `ViewItem` / `ViewCollection` (e.g. `CoordinatesViewItem`, `RoutePathVie
 | Minimal UX: choose stop → next time | React client at `/route/f` |
 | Unit + integration tests | `tests/*` |
 | IDE runnable | VS2022 F5 / `dotnet run` + Vite / `setup.bat` / Docker |
+
+## Troubleshooting
+
+**"The application which this project type is based on was not found" for `gmvTM.Client.esproj`** — the `.esproj` client project uses Visual Studio's JavaScript Project System, which ships with the **ASP.NET and web development** workload. Open the Visual Studio Installer, select **Modify**, tick that workload, and update to a recent VS 2022 (17.8+). Until then the client project simply stays unloaded — everything still runs, because the server launches the Vite dev server itself on F5, and the `setup.bat`, CLI, and Docker paths don't use the `.esproj` at all.
+
+**"Version 8.0.x of the .NET SDK requires at least version 17.8.3 of MSBuild. The current available version of MSBuild is 16.x"** — the solution was opened in Visual Studio 2019 (MSBuild 16 is VS 2019). .NET 8 projects cannot be built by VS 2019 at all, and no `global.json` change can fix that — despite what the error suggests. Open the solution in **Visual Studio 2022 (17.8+)** instead; if both versions are installed, right-click the `.sln` → **Open with** → Visual Studio 2022, or set VS 2022 as the default handler for `.sln` files. The `setup.bat`, CLI, and Docker paths only need the .NET 8 SDK, not Visual Studio.
+
+**Client fails with "Node.js is required..." on first Debug build** — install the Node LTS from [nodejs.org](https://nodejs.org/) and restart Visual Studio so it picks up the new PATH.
+
+**401s from the API in dev** — make sure the Vite proxy targets the HTTPS port (it does by default); proxying to the HTTP port causes a redirect that strips the Authorization header.
 
 ## Build & test
 
